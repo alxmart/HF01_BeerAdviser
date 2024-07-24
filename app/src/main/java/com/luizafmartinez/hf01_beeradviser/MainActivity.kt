@@ -5,8 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import com.luizafmartinez.hf01_beeradviser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
 
     private lateinit var findBeer: Button
     private lateinit var beerColor: Spinner
@@ -14,18 +19,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         findBeer = findViewById(R.id.find_beer)
-        findBeer.setOnClickListener {
 
-            beerColor = findViewById(R.id.beer_color)
-            val color = beerColor.selectedItem
+        binding.findBeer.setOnClickListener {
+
+            beerColor = binding.beerColor
+
+            val color = binding.beerColor.selectedItem
 
             val beerList = getBeers(color.toString())
             val beers = beerList.reduce { str, item -> str + '\n' + item }
 
-            brands = findViewById(R.id.brands)
+            brands = binding.brands
             brands.text = beers
         }
     }
