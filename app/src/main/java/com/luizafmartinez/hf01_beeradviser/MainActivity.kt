@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        findBeer = findViewById(R.id.find_beer)
+        findBeer = binding.findBeer
 
         binding.findBeer.setOnClickListener {
 
